@@ -1,31 +1,31 @@
-const { MongoClient } = require("mongodb"); // Importa el módulo MongoClient de MongoDB
+const { MongoClient } = require("mongodb"); // Imports the MongoDB client
 
 class MongoAdapter {
-  db; // Base de datos
-  listHistory = []; // Lista de historial
-  credentials = { dbUri: null, dbName: null }; // Credenciales de la base de datos
+  db; // Database handle
+  listHistory = []; // Cached history entries
+  credentials = { dbUri: null, dbName: null }; // Database credentials
 
   constructor(_credentials) {
-    this.credentials = _credentials; // Inicializa las credenciales con los valores proporcionados
+    this.credentials = _credentials; // Stores the provided credentials
   }
 
   init = async () => {
     try {
-      const client = new MongoClient(this.credentials.dbUri, {}); // Crea una instancia del cliente MongoClient con la URI proporcionada
-      await client.connect(); // Conecta con la base de datos
-      console.log("🆗 Conexión Correcta DB"); // Imprime un mensaje de conexión exitosa en la consola
-      const db = client.db(this.credentials.dbName); // Obtiene la base de datos
-      this.db = db; // Asigna la base de datos a la propiedad 'db'
-      return true; // Devuelve verdadero para indicar una conexión exitosa
+      const client = new MongoClient(this.credentials.dbUri, {}); // Creates a MongoDB client
+      await client.connect(); // Connects to the database
+      console.log("Database connection established"); // Logs successful connection
+      const db = client.db(this.credentials.dbName); // Selects the database
+      this.db = db; // Stores the database handle
+      return true; // Indicates a successful connection
     } catch (e) {
-      console.log("Error", e); // Imprime cualquier error en la consola
-      return; // Devuelve undefined en caso de error
+      console.log("Error", e); // Logs connection errors
+      return; // Returns undefined when connection fails
     }
   };
 
   clearHistory = async (from) => {
-    this.listHistory = []; // Limpia la lista de historial
-    await this.db.collection("history").deleteMany({ from }); // Elimina los documentos de historial con el número especificado
+    this.listHistory = []; // Clears the in-memory history cache
+    await this.db.collection("history").deleteMany({ from }); // Deletes history documents for the number
   };
 
   getPrevByNumber = async (from) => {
@@ -34,22 +34,22 @@ class MongoAdapter {
       .find({ from })
       .sort({ _id: -1 })
       .limit(1)
-      .toArray(); // Obtiene el documento más reciente de historial con el número especificado
-    return result[0]; // Devuelve el resultado obtenido
+      .toArray(); // Gets the latest history record for the number
+    return result[0]; // Returns the matching record
   };
 
   save = async (ctx) => {
     const ctxWithDate = {
       ...ctx,
       date: new Date(),
-    }; // Agrega la fecha actual al contexto
-    await this.db.collection("history").insertOne(ctxWithDate); // Inserta el contexto en la colección de historial
+    }; // Adds the current date to the context
+    await this.db.collection("history").insertOne(ctxWithDate); // Persists the context in history
 
-    this.listHistory.push(ctx); // Agrega el contexto a la lista de historial
+    this.listHistory.push(ctx); // Adds the context to the in-memory history
   };
 
   createIntent = async (ctxIntents) => {
-    await this.db.collection("intents").insertOne(ctxIntents); // Crea un nuevo intento en la colección de intenciones
+    await this.db.collection("intents").insertOne(ctxIntents); // Creates a new intent record
   };
 
   updateIntent = async (phone, status) => {
@@ -59,7 +59,7 @@ class MongoAdapter {
         { phone },
         { $set: { status } },
         { sort: { dateAt: -1 }, returnOriginal: false }
-      ); // Actualiza el estado de la intención más reciente con el número de teléfono especificado
+      ); // Updates the latest intent status for the phone number
   };
 
   sentimentCustomer = async (phone, sentiment) => {
@@ -71,17 +71,17 @@ class MongoAdapter {
         upsert: true,
         returnOriginal: false,
       }
-    ); // Actualiza o inserta un nuevo sentimiento para el número de teléfono especificado
+    ); // Updates or inserts the sentiment for the phone number
   };
 
   findIntent = async (phone) => {
     return await this.db
       .collection("intents")
-      .findOne({ phone }, { sort: { dateAt: -1 } }); // Busca la intención más reciente con el número de teléfono especificado
+      .findOne({ phone }, { sort: { dateAt: -1 } }); // Finds the most recent intent for the phone number
   };
 
   getAgents = async () => {
-    return await this.db.collection("agents").find({}).toArray(); // Obtiene todos los agentes de la colección de agentes
+    return await this.db.collection("agents").find({}).toArray(); // Returns all configured agents
   };
 
   getLatestHistoyry = async (numLimit) => {
@@ -102,10 +102,10 @@ class MongoAdapter {
           historial: { $slice: ["$historial", -10] },
         },
       },
-    ]); // Realiza una agregación en la colección de historial para obtener los últimos registros de historial para cada número
+    ]); // Aggregates the latest history entries for each number
 
-    return result.toArray(); // Devuelve el resultado obtenido como un array
+    return result.toArray(); // Returns the aggregation result as an array
   };
 }
 
-module.exports = MongoAdapter; // Exporta la clase MongoAdapter
+module.exports = MongoAdapter; // Exports the MongoAdapter class

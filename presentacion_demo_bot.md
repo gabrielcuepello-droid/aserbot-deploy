@@ -1,49 +1,45 @@
-# Guion de Presentación: Demo Interactivo del Bot de WhatsApp 'Asert-Bot'
+# Presentation Script: Interactive Demo for Asert-Bot
 
-## 1. Introducción y Bienvenida
+## 1. Welcome
 
-**Presentador:** ¡Hola a todos y bienvenidos! Hoy estamos aquí para presentarles una solución innovadora que está transformando la forma en que las empresas interactúan con sus clientes en WhatsApp: el **Asert-Bot**.
+**Presenter:** Welcome everyone. Today we are showcasing **Asert-Bot**, a WhatsApp assistant designed to help businesses automate customer conversations and respond faster.
 
-## 2. El Desafío de la Atención al Cliente y Ventas en WhatsApp
+## 2. The Business Problem
 
-**Presentador:** En el mundo digital actual, WhatsApp se ha convertido en un canal de comunicación esencial. Sin embargo, gestionar un alto volumen de consultas y oportunidades de venta puede ser un desafío. Aquí es donde nuestro Asert-Bot entra en juego, automatizando y optimizando estas interacciones.
+**Presenter:** WhatsApp is one of the most important customer communication channels, but handling a large volume of messages manually is expensive and slow. Asert-Bot helps by automating repeatable interactions while keeping the experience conversational.
 
-## 3. Presentando a 'Jesus': Nuestro Experto en Ventas Impulsado por IA
+## 3. Meet the Demo Assistant
 
-**Presentador:** Para esta demostración, hemos configurado nuestro bot con una personalidad específica: **'Jesus'**. Jesus es un **experto en ventas y atención al cliente** especializado en nuestro curso de creación de chatbots de WhatsApp. Su misión es clara: responder preguntas técnicas, resolver dudas y, lo más importante, **incitar a la compra del curso** de manera sutil y efectiva.
+**Presenter:** For this demo, the bot is configured as a sales and support assistant. Its job is to answer product questions, explain capabilities, and guide the customer through the next step in the process.
 
-## 4. ¿Cómo Funciona Asert-Bot?
+## 4. How Asert-Bot Works
 
-**Presentador:** El Asert-Bot se basa en tecnologías de vanguardia para ofrecer una experiencia fluida y eficiente:
+**Presenter:** Asert-Bot combines several components to deliver that experience:
 
-*   **Inteligencia Artificial con OpenAI (GPT)**: El corazón de nuestro bot es la capacidad de entender el lenguaje natural y generar respuestas coherentes y relevantes, gracias a la integración con OpenAI. Esto permite a Jesus mantener conversaciones dinámicas y personalizadas.
-*   **Personalidad y Flujos de Conversación**: Hemos dotado a Jesus de un conocimiento profundo sobre el curso de chatbots. Sus respuestas son breves, concisas (no más de 3 líneas) y siempre orientadas a destacar los beneficios del curso y motivar la inscripción.
-*   **Integración Nativa con WhatsApp**: El bot se conecta directamente a WhatsApp, lo que significa que sus clientes pueden interactuar con él de la misma manera que lo harían con cualquier contacto.
+*   **OpenAI (GPT)** for natural language understanding and response generation.
+*   **Conversation Flows** for routing users through support, sales, and follow-up paths.
+*   **Native WhatsApp Integration** for direct customer interaction through a familiar channel.
 
-## 5. Demostración en Vivo: Interactuando con Jesus
+## 5. Live Demo
 
-**Presentador:** Ahora, les invito a experimentar el Asert-Bot en acción. Por favor, tomen sus teléfonos y sigan estos sencillos pasos:
+**Presenter:** Please scan the QR code on screen using WhatsApp linked devices. Once connected, send a message to the bot. You can ask questions such as:
 
-1.  **Escaneen el código QR** que se muestra en pantalla con la función de "Dispositivos vinculados" de WhatsApp.
-2.  Una vez conectado, envíen un mensaje al bot. Pueden preguntarle sobre:
-    *   "¿Qué temas cubre el curso de chatbots?"
-    *   "¿Necesito conocimientos de programación para tomar el curso?"
-    *   "¿Qué tecnologías se utilizan en el curso?"
-    *   "¿Cómo puedo inscribirme?"
+*   "What can this bot automate?"
+*   "Does it integrate with Chatwoot or Stripe?"
+*   "How does onboarding work?"
+*   "Can it answer customer support questions?"
 
-**Presentador:** Observen cómo Jesus responde, proporcionando información valiosa y, al mismo tiempo, guiando la conversación hacia la decisión de compra. Sus respuestas están diseñadas para ser informativas pero también persuasivas, destacando el valor del curso.
+**Presenter:** Notice how the assistant responds with short, relevant answers and keeps the conversation moving toward a useful next action.
 
-## 6. Beneficios Clave para su Negocio
+## 6. Business Value
 
-**Presentador:** Al implementar un bot como Asert-Bot, su empresa puede:
+**Presenter:** With a setup like Asert-Bot, a company can:
 
-*   **Mejorar la Atención al Cliente**: Disponibilidad 24/7 para responder preguntas frecuentes.
-*   **Aumentar las Ventas**: Guía proactiva de los clientes a través del embudo de ventas.
-*   **Optimizar Recursos**: Reducir la carga de trabajo del personal de ventas y soporte.
-*   **Escalabilidad**: Manejar un número ilimitado de conversaciones simultáneamente.
+*   Improve response times.
+*   Reduce repetitive manual work.
+*   Support sales and customer service around the clock.
+*   Scale to a larger number of simultaneous conversations.
 
-## 7. Conclusión y Preguntas
+## 7. Closing
 
-**Presentador:** El Asert-Bot es más que un simple contestador automático; es un miembro de su equipo de ventas y soporte, siempre listo para interactuar y convertir. Les animo a seguir interactuando con Jesus y descubrir todo su potencial.
-
-¡Muchas gracias por su atención! ¿Tienen alguna pregunta?
+**Presenter:** Asert-Bot is not just an autoresponder. It is a configurable operational assistant for WhatsApp. Thank you for your time. I am happy to take questions.

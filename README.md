@@ -1,65 +1,52 @@
-## Aser bot: Tu asistente online en WhatsApp
+## Aser Bot: Your WhatsApp Assistant
 
-**Descripción:**
+**Description**
 
-Aser bot es un bot asesor online para WhatsApp que te ayuda a resolver tus dudas y necesidades de forma rápida y sencilla. 
+Aser Bot is a WhatsApp assistant built to help businesses automate customer conversations, answer common questions, and support day-to-day sales and service workflows.
 
-**Objetivo:**
+**Goal**
 
-Mejorar la experiencia del usuario al proporcionar respuestas rápidas, precisas y personalizadas a través de la plataforma de mensajería más utilizada del mundo.
+Improve the customer experience by delivering fast, accurate, and personalized replies through WhatsApp.
 
-**¿Cómo funciona?**
+**How it works**
 
-Aser bot utiliza inteligencia artificial para comprender tus preguntas y ofrecerte la mejor respuesta posible. Además, puedes:
+Aser Bot uses AI to understand incoming messages and reply with relevant information. It can:
 
-* **Recibir recomendaciones** sobre productos, servicios o información que te pueda interesar.
-* **Obtener soluciones** a problemas comunes de forma rápida y eficiente.
-* **Interactuar con el bot de forma natural**, como si estuvieras hablando con un amigo.
+* **Recommend products or services** based on the conversation.
+* **Resolve common requests** quickly and consistently.
+* **Interact naturally** in a conversational tone.
 
-**¿Qué beneficios ofrece?**
+**Benefits**
 
-* **Respuestas rápidas y precisas:** Aser bot está diseñado para responder a tus preguntas en el menor tiempo posible, con información fiable y actualizada.
-* **Atención personalizada:** El bot se adapta a tus necesidades y preferencias para ofrecerte una experiencia única.
-* **Disponibilidad 24/7:** Puedes acceder a Aser bot en cualquier momento y desde cualquier lugar, las 24 horas del día, los 7 días de la semana.
+* **Fast and accurate replies:** The bot is designed to answer quickly with useful information.
+* **Personalized assistance:** Responses can be tailored to the user's context and business rules.
+* **24/7 availability:** Customers can get help at any time.
 
-**¿Cómo puedo empezar a usar Aser bot?**
+**Getting started**
 
-Es muy sencillo:
+1. Install the project dependencies.
+2. Configure the required environment variables.
+3. Start the bot and scan the WhatsApp QR code.
 
-1. **Envía un mensaje de WhatsApp** al número +58 414 5255554. (Numero de la persona que coordino el equipo)
-2. **Sigue las instrucciones** que te indique el bot.
-3. ¡Listo! Ya puedes empezar a disfrutar de todas las ventajas de Aser bot.
+**Success metrics**
 
-**Métricas de éxito:**
+The project can be evaluated through:
 
-Para evaluar el éxito de Aser bot, se utilizarán las siguientes métricas:
+* **Active users:** Number of users interacting with the bot.
+* **Response time:** How quickly the bot answers incoming messages.
+* **User satisfaction:** Feedback collected from real conversations.
+* **Resolved requests:** Number of conversations successfully handled.
 
-* **Número de usuarios activos:** Se medirá la cantidad de usuarios que interactúan con el bot y utilizan sus servicios regularmente.
-* **Tiempo de respuesta:** Se evaluará el tiempo que tarda el bot en responder a las consultas de los usuarios, con el objetivo de proporcionar respuestas rápidas y eficientes.
-* **Nivel de satisfacción del usuario:** Se recopilarán comentarios y opiniones de los usuarios para evaluar su satisfacción con el bot y sus servicios.
-* **Número de consultas resueltas:** Se registrará la cantidad de consultas que el bot es capaz de resolver de manera exitosa.
+**Development approach**
 
-**Metodología de desarrollo:**
+The project follows an iterative workflow, with improvements delivered in short development cycles.
 
-El proyecto Aser bot se desarrollará utilizando la metodología ágil, con la implementación de sprints para organizar y gestionar el trabajo.
+**Subscription model**
 
-**Sprints:**
+Possible subscription features include:
 
-* **Sprint 1:** Definición de requisitos y diseño de la arquitectura del bot.
-* **Sprint 2:** Desarrollo del módulo de respuesta a consultas y pruebas iniciales.
-* **Sprint 3:** Implementación del módulo de recomendaciones y mejoras en la interfaz de usuario.
-* **Sprint 4:** Integración de la inteligencia artificial y aprendizaje automático para mejorar las respuestas del bot.
-* **Sprint 5:** Pruebas finales, ajustes y preparación para el lanzamiento.
-
-**Modelo de suscripción:**
-
-Aser bot ofrece un modelo de suscripción con las siguientes características:
-
-* **Acceso a funciones específicas:** Los suscriptores tendrán acceso a funciones exclusivas de vendedor y asistente online, como la gestión de mensajes entrantes en tiempo real, respuestas automáticas personalizadas y la capacidad de automatizar tareas de ventas y atención al cliente.
-* **Asistencia 24/7:** Los suscriptores disfrutarán de la disponibilidad del bot de WhatsApp para responder preguntas frecuentes y resolver problemas básicos de los clientes las 24 horas del día, los 7 días de la semana.
-* **Personalización y flexibilidad:** El bot permitirá la personalización del guion utilizado, lo que mejorará la experiencia del cliente y brindará flexibilidad en la comunicación con los usuarios.
-* **Integración con herramientas de ventas:** El bot se integrará con herramientas de ventas y CRM para proporcionar una experiencia de usuario fluida y mejorar la eficiencia en la gestión de clientes.
-* **Actualizaciones y mejoras continuas:** Los suscriptores recibirán actualizaciones regulares y mejoras continuas en las capacidades del bot, lo que garantizará un servicio de alta calidad y adaptado a las necesidades cambiantes del negocio.
-* **Soporte técnico:** Se proporcionará soporte técnico dedicado para resolver cualquier problema relacionado con el funcionamiento del bot y para brindar asesoramiento sobre su uso efectivo.
-
-**¡Aser bot, tu mejor aliado para el éxito!**
+* **Operational automation:** Real-time message handling and custom automated replies.
+* **Business integration:** Connection with CRM, payment, and support tools.
+* **Customization:** Flexible prompts, flows, and agent behaviors.
+* **Continuous updates:** Ongoing improvements to quality and capabilities.
+* **Technical support:** Help with setup, maintenance, and optimization.

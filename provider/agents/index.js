@@ -1,24 +1,24 @@
 /**
- * Lista de agentes
- * @param {*} flows - Flujos de agentes
- * @param {*} adapterDB - Adaptador de base de datos
- * @returns - Lista de agentes con flujos asignados
+ * Builds the configured agent list.
+ * @param {*} flows - Available agent flows
+ * @param {*} adapterDB - Database adapter
+ * @returns - Agents with their assigned flow
  */
 const employees = async (flows, adapterDB) => {
-  let listAgents = await adapterDB.getAgents(); // Obtiene la lista de agentes desde la base de datos
+  let listAgents = await adapterDB.getAgents(); // Loads agents from the database
   listAgents = listAgents.map((agent) => {
-    // Si agent.flows es un número, lo usamos como índice. Si no, buscamos por nombre de flujo
+    // If agent.flows is numeric, use it as an index. Otherwise match by flow name.
     const flowIndex = parseInt(agent.flows);
     if (!isNaN(flowIndex)) {
       agent.flow = flows[flowIndex];
     } else {
-      // Intenta encontrar el flujo por el nombre (opcional, por si acaso)
+      // Fallback to a lookup by flow name
       agent.flow = flows.find(f => f.name === agent.flows) || flows[0];
     }
     return agent;
   });
-  console.log(listAgents); // Imprime la lista de agentes en la consola
-  return listAgents; // Devuelve la lista de agentes con flujos asignados
+  console.log(listAgents); // Logs the resolved agents
+  return listAgents; // Returns the agents with flows assigned
 };
 
-module.exports = { employees }; // Exporta la función 'employees'
+module.exports = { employees }; // Exports the employees helper

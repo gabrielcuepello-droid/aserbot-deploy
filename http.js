@@ -8,12 +8,27 @@ class ServerAPI {
   }
 
   start() {
-    const port = process.env.PORT || 3001;
     this.app.get("/", (req, res) => {
       res.send("Bot is running");
     });
-    this.app.listen(port, () => {
+
+    const basePort = Number(process.env.PORT || 3001);
+    this.listenWithFallback(basePort);
+  }
+
+  listenWithFallback(port) {
+    const server = this.app.listen(port, () => {
       console.log(`HTTP Server running on port ${port}`);
+    });
+
+    server.on("error", (error) => {
+      if (error.code === "EADDRINUSE") {
+        console.log(`Port ${port} is busy, trying ${port + 1}...`);
+        this.listenWithFallback(port + 1);
+        return;
+      }
+
+      throw error;
     });
   }
 }

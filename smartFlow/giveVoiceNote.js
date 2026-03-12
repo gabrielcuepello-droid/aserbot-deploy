@@ -3,11 +3,11 @@ const { handlerAI } = require("../utils/utils");
 const notEmployee = require("./notEmployee");
 
 /**
- * - Debe ser capaz de buscar info en pinecone
- * - Generar pregunta independiente con un contexto de conversacion
- * - Esa pregunta -> buscar en pinecone = Datos de la base de datos
- * - Enviar nuevamente a GPT para dar respuesta compacta y amable
- * - bot-ws-plugin: Obtener el input original
+ * - Should be able to search for information in Pinecone
+ * - Generate a standalone question using the conversation context
+ * - That question -> search in Pinecone = database information
+ * - Send the result back to GPT for a compact, friendly answer
+ * - bot-ws-plugin: obtain the original input
  */
 
 module.exports = addKeyword(EVENTS.VOICE_NOTE)
@@ -20,7 +20,7 @@ module.exports = addKeyword(EVENTS.VOICE_NOTE)
     .addAction(async (ctx, ctxFn) => {
         console.log(`[Flow Smart VoiceNote]`)
         const employeesAddon = ctxFn.extensions.employeesAddon
-        await ctxFn.flowDynamic("dame un momento para escucharte...🙉");
+        await ctxFn.flowDynamic("Give me a moment while I process your voice note...");
         const text = await handlerAI(ctx);
         const currentState = ctxFn.state.getMyState();
         const fullSentence = `${currentState?.answer ?? ""}. ${text}`;

@@ -1,32 +1,31 @@
-- [x] dockerizar
-- cambiar nombre de agentes
-- cola de procesos
-- emojis
-- afinar el prompt para que se asegure de dar el precio
-- afinar prompt para respuestas mas cortas
-- afinar prompt para que de url del curso
-- reiniciar de vez en cuando cada 30 min ?
-- limpiar \n
-- intencion de despedida
-- seguimiento de clientes que no compraron ??
-- que pasa cuando llegan sticker
-- [x] no entendi puedes explicarte mejor: editarlo por algo más natural
-- [ ] como manejar los mensajes que viene separados [cuanto, el curso]
-    se me ocurre consultar si existe un prceso en ejecuccion y de ser asi fallBack message
-- info de mas cursos
-- [] NO permitir injeccion de ROLES
+- [x] Dockerize the project
+- Rename agents
+- Process queue
+- Emojis
+- Refine the prompt so it always provides pricing correctly
+- Refine prompts for shorter responses
+- Refine the prompt so it can provide the right checkout URL
+- Restart periodically every 30 minutes?
+- Clean `\n`
+- Goodbye intent
+- Follow up with customers who did not buy
+- Handle incoming stickers
+- [x] Replace "I did not understand" with a more natural fallback
+- [ ] Handle split messages such as [how much, the product]
+  A possible approach is checking whether there is an active process and using a fallback message if so.
+- More product information
+- [ ] Prevent role injection
 
 
 #############################
 - [x] state global
-- [x] algo como injeccion de dependencias
-En `flows` se puede cambiar la exportacion para defaul y un `index.js` como cargador
-si hacemos esto podemos simplemente crear un archivo y automaticamnte se carge
-en el app
+- [x] Dependency injection style setup
+In `flows` the export can be changed to default and loaded through an `index.js`.
+That would allow adding a file and having it picked up automatically in `app.js`.
 
 #############################
 SmartFlow
 
-- Se debe usar un modelo el más economico / rapido para poder determinar la intencion
-y selecionar el flujo ideal
-- Dentro del flujo ideal se ejecutara...
+- Use the cheapest and fastest model possible to classify intent
+  and select the ideal flow
+- The selected flow will then execute...

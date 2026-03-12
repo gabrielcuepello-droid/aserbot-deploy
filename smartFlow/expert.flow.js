@@ -10,7 +10,7 @@ module.exports = addKeyword(EVENTS.ACTION)
         }
     })
     .addAnswer(
-        ["dame un momento ..."]
+        ["Give me a moment..."]
     )
     .addAction(async (_, {extensions, state, flowDynamic}) => {
         const chatwood = extensions.chatwood;
@@ -20,12 +20,12 @@ module.exports = addKeyword(EVENTS.ACTION)
             return
         }
 
-        console.log(currentState.answer.length, 'enviar nota de voz')
+        console.log(currentState.answer.length, 'send voice note')
         if(currentState.answer.length > 720 && !currentState?.voice_note){
-            const msg =  ["dame un momento... mejor te envio nota de voz"].join('\n')
+            const msg =  ["Give me a moment... I will send a voice note instead."].join('\n')
             await flowDynamic(msg)
             const path = await textToVoice(currentState.answer);
-            await flowDynamic([{ body: "escucha", media: path }]);
+            await flowDynamic([{ body: "Listen to this", media: path }]);
             if (chatwood && chatwood.createMessage) {
                 await chatwood.createMessage({
                     msg: `*voice_note* ${currentState.answer}`,

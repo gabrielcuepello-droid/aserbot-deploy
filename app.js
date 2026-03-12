@@ -2,8 +2,8 @@
  * Asert-Bot: WhatsApp Chatbot with AI
  * Made by: Jesus Cupello
  * 
- * This bot uses OpenAI GPT models to provide expert sales and support
- * assistance, specifically tailored for the WhatsApp Chatbot course.
+ * This bot uses OpenAI GPT models to provide sales and support
+ * assistance for WhatsApp conversations.
  */
 
 require("dotenv").config();
@@ -33,18 +33,20 @@ const greetingFlow = require("./smartFlow/greeting.flow");
 const agentFlow = require("./smartFlow/agent.flow");
 const ChatWood = require("./services/chatwood");
 
+const phoneFromJid = (jid = "") => jid.split("@")[0].split(":")[0].replace(/\D/g, "");
+
 const main = async () => {
   await adapterDB.init();
   const chatwood = (process.env.CHATWOOT_ID && process.env.CHATWOOT_URL) 
     ? new ChatWood(process.env.CHATWOOT_ID, process.env.CHATWOOT_URL, { accounts: 1 })
-    : { createMessage: () => {} }; // Mock si no hay configuración
+    : { createMessage: () => {} }; // Mock object when Chatwoot is not configured
   const adapterProvider = createProvider(BaileysProvider);
 
   // Event to log when the bot is ready and credit the creator
   adapterProvider.on("ready", () => {
     console.log("-----------------------------------------");
     console.log("READY - Bot is connected and ready to chat!");
-    console.log("Hecho por: Jesus Cupello");
+    console.log("Made by: Jesus Cupello");
     console.log("-----------------------------------------");
   });
 
@@ -52,7 +54,17 @@ const main = async () => {
   adapterProvider.on("auth_success", async (data) => {
     console.log("Authentication successful! Sending welcome message...");
     const jid = data.jid; // Get the JID of the authenticated user
-    await adapterProvider.sendMessage(jid, "¡Hola! Soy Jesus, tu experto en el curso de chatbots de WhatsApp. ¿En qué puedo ayudarte hoy?", {});
+    const phone = phoneFromJid(jid);
+    const startMessage = encodeURIComponent("Hello, I want to start the conversation.");
+    const startLink = phone ? `https://wa.me/${phone}?text=${startMessage}` : "";
+
+    if (startLink) {
+      console.log("-----------------------------------------");
+      console.log(`START CHAT LINK: ${startLink}`);
+      console.log("-----------------------------------------");
+    }
+
+    await adapterProvider.sendMessage(jid, "Hello! I am your Aser Bot assistant. How can I help you today?", {});
   });
 
   const httpServer = new ServerAPI(adapterProvider, adapterDB);
@@ -91,7 +103,7 @@ const main = async () => {
     {
       globalState: {
         status: true,
-        inbox_id: 11, //id inbox Jesus-Ventas
+        inbox_id: 11, // Default Chatwoot inbox id
       },
       extensions: {
         employeesAddon,

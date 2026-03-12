@@ -3,7 +3,7 @@ const { readdirSync } = require('fs')
 const CURRENT_DIR = __dirname;
 
 /**
- * Leer directorio de forma automaticamente
+ * Loads flow files from the current directory automatically.
  */
 const listStamartFlows = readdirSync(CURRENT_DIR).map((fileName) => {
     if (!fileName.includes('index')) {

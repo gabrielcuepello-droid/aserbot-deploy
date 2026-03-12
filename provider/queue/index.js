@@ -1,28 +1,28 @@
-const Queue = require("bull"); // Importa el módulo de cola Bull
+const Queue = require("bull"); // Imports the Bull queue module
 
-const processQueue = new Queue("message_process", "redis://redis:6380"); // Crea una nueva cola de procesamiento
+const processQueue = new Queue("message_process", "redis://redis:6380"); // Creates the processing queue
 
 class QueueWS {
   constructor() {
-    processQueue.process((job, done) => { // Procesa los trabajos en la cola
+    processQueue.process((job, done) => { // Processes queue jobs
     setTimeout(() => {
-      const { data } = job; // Obtiene los datos del trabajo
-      console.log(data); // Imprime los datos en la consola
-      done(); // Indica que el trabajo ha sido completado
+      const { data } = job; // Gets the job payload
+      console.log(data); // Logs the payload
+      done(); // Marks the job as completed
     }, 2000);
   });
 }
 
   addProcess = async (data = {}) => {
-    processQueue.add( // Agrega un nuevo trabajo a la cola
-      { data }, // Datos del trabajo
+    processQueue.add( // Adds a new queue job
+      { data }, // Job payload
       {
-        attempts: 1, // Número de intentos
+        attempts: 1, // Retry count
       }
     );
   };
 
-  onProcess = () => {}; // Función de proceso
+  onProcess = () => {}; // Process hook
 }
 
-module.exports = QueueWS; // Exporta la clase QueueWS
+module.exports = QueueWS; // Exports the QueueWS class

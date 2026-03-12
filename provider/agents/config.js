@@ -1,10 +1,10 @@
 const { init } = require("bot-ws-plugin-openai");
 
 const employeesAddonConfig = {
-  model: "gpt-4", // Configura el modelo de OpenAI como "gpt-4"
-  temperature: 0, // Establece la temperatura como 0
-  apiKey: process.env.OPENAI_API_KEY, // Utiliza la clave de API de OpenAI del entorno
+  model: "gpt-4", // OpenAI model used by the employee addon
+  temperature: 0, // Deterministic output
+  apiKey: process.env.OPENAI_API_KEY, // Reads the API key from the environment
 };
-const employeesAddon = init(employeesAddonConfig); // Inicializa el complemento de empleados con la configuración proporcionada
+const employeesAddon = init(employeesAddonConfig); // Initializes the employee addon
 
-module.exports = { employeesAddon, employeesAddonConfig }; // Exporta el complemento de empleados y su configuración
+module.exports = { employeesAddon, employeesAddonConfig }; // Exports the addon and its configuration

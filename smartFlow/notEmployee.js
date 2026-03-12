@@ -17,7 +17,7 @@ module.exports = addKeyword(EVENTS.ACTION)
         state.update({ fallBack: currentState?.fallBack ?? 1 })
         const name = ctx?.pushName ?? ctx.ProfileName.split(" ").shift();
         if (currentState?.fallBack > 2) {
-            const msg = `Creo que no, nos estamos entendiendo. Vuelve dentro de 40min! 🤷‍♀️`
+            const msg = `It looks like we are not understanding each other. Please try again in 40 minutes.`
             await chatwood.createMessage({
                 msg: msg,
                 mode: "outgoing",
@@ -28,7 +28,7 @@ module.exports = addKeyword(EVENTS.ACTION)
             return
         }
 
-        const msg = [name,"Hmm no estoy seguro...", "Recuerda que estoy diseñado para asistir sobre el curso y vender el curso. ¿Tienes alguna pregunta sobre el curso?"].join('\n')
+        const msg = [name, "Hmm, I am not fully sure...", "I am designed to help with Aser Bot features, setup, and sales questions. What would you like to know?"].join('\n')
         await chatwood.createMessage({
             msg: msg,
             mode: "outgoing",

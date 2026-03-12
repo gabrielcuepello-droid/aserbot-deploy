@@ -11,13 +11,13 @@ module.exports = addKeyword(EVENTS.ACTION)
             return endFlow();
         }
     })
-    .addAnswer(["Hmm no estoy seguro...", "Recuerda que estoy diseñado para asistir sobre el curso y vender el curso. ¿Tienes alguna pregunta sobre el curso?"],
+    .addAnswer(["Hmm, I am not fully sure...", "I am designed to help with Aser Bot features, setup, and sales questions. What would you like to know?"],
         null, async (_, { state, flowDynamic }) => {
             const currentState = state.getMyState();
             state.update({ fallBack: currentState?.fallBack ?? 1 })
 
             if (currentState?.fallBack > 2) {
-                await flowDynamic(`Creo que no, nos estamos entendiendo. Vuelve dentro de 40min! 🤷‍♀️`)
+                await flowDynamic(`It looks like we are not understanding each other. Please try again in 40 minutes.`)
                 state.update({ baned: true })
             }
         });

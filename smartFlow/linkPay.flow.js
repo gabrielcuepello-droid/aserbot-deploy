@@ -13,7 +13,7 @@ module.exports = addKeyword(["andorra"])
     })
     .addAction(chatwootMiddleware)
     .addAnswer(
-        `Solo un dato más ¿Cual es tu email?`,
+        `One more detail: what is your email?`,
         { capture: true },
         async (ctx, { fallBack, state, flowDynamic, gotoFlow, extensions }) => {
             const adapterDB = extensions.database
@@ -29,11 +29,10 @@ module.exports = addKeyword(["andorra"])
                 }
 
                 state.update({ fallBackEmail: fallBackEmail + 1 })
-                return fallBack("Debes introducir un email valido");
+                return fallBack("You need to enter a valid email address.");
             }
             state.update({ email:email.toLowerCase() });
-            await flowDynamic(`dame un momento para generarte un link de pago`); 
-            await flowDynamic([{ body: `El cupon lo debes de aplicar aqui`, media: "https://i.imgur.com/Y1rBTFu.png" }]);
+            await flowDynamic(`Give me a moment while I generate your payment link.`); 
 
             const response = await handlerStripe(ctx.from, currentState.email);
             await adapterDB.createIntent({
@@ -44,7 +43,7 @@ module.exports = addKeyword(["andorra"])
                 email: currentState.email,
             });
             state.update({ answer: "" });
-            const msgLinkPay = `Este es tu link: ${response.url}`
+            const msgLinkPay = `Here is your link: ${response.url}`
             await flowDynamic(msgLinkPay);
             await chatwood.createMessage({
                 msg: msgLinkPay,

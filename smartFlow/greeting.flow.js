@@ -14,7 +14,7 @@ module.exports = addKeyword(['hola', 'hi'])
         const chatwood = extensions.chatwood;
         const currentState = state.getMyState();
         state.update({ answer: "" });
-        const msg = `Buenas estoy aqui para vender! como puedo ayudarte`
+        const msg = `Hello, I am here to help with product questions, setup, and sales. How can I help you?`
         await chatwood.createMessage({
             msg: msg,
             mode: "outgoing",

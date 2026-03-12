@@ -2,5 +2,5 @@ const { addKeyword, EVENTS } = require("@bot-whatsapp/bot");
 
 module.exports = addKeyword(EVENTS.ACTION).addAnswer([
     `🤦‍♂️`,
-    'Mejor empezamos de nuevo ¿Como te puedo ayudar?',
-    'Recuerda que estoy aquí para vender...'])
+    'Let us start over. How can I help you?',
+    'I am here to help with product, setup, and sales questions.'])

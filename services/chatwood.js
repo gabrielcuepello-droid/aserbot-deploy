@@ -1,56 +1,56 @@
-// Definición de la clase ChatWood
+// ChatWood service wrapper
 class ChatWood {
-  token = ""; // Inicialización del token de autenticación
-  config = { accounts: 1 }; // Configuración por defecto con una cuenta
-  api = ``; // Inicialización de la URL de la API
+  token = ""; // Authentication token
+  config = { accounts: 1 }; // Default configuration with one account
+  api = ``; // Base API URL
 
-  // Constructor de la clase ChatWood
+  // Class constructor
   constructor(_token = "", _api = "", _config = {}) {
-    this.token = _token; // Asigna el token proporcionado al token de autenticación
-    this.api = _api; // Asigna la URL de la API proporcionada a la URL de la API
-    this.config = { ...this.config, ..._config }; // Fusiona la configuración por defecto con la proporcionada
+    this.token = _token; // Stores the authentication token
+    this.api = _api; // Stores the API URL
+    this.config = { ...this.config, ..._config }; // Merges the provided configuration
   }
 
-  // Método para construir el encabezado de la solicitud
+  // Builds the request headers
   buildHeader = () => {
-    const header = new Headers(); // Crea un nuevo encabezado
-    header.append("api_access_token", this.token); // Agrega el token de acceso al encabezado
-    header.append("Content-Type", "application/json"); // Establece el tipo de contenido del encabezado
-    return header; // Devuelve el encabezado construido
+    const header = new Headers(); // Creates the headers object
+    header.append("api_access_token", this.token); // Adds the API token
+    header.append("Content-Type", "application/json"); // Sends JSON payloads
+    return header; // Returns the headers object
   };
 
-  // Método para obtener los mensajes de la bandeja de entrada
+  // Gets inboxes
   getInbox = async () => {
     const requestOptions = {
       method: "GET",
-      headers: this.buildHeader(), // Utiliza el encabezado construido
+      headers: this.buildHeader(), // Uses the shared headers
     };
 
     const dataAPI = await fetch(
       `${this.api}/api/v1/accounts/${this.config.accounts}/inboxes`,
       requestOptions
     );
-    const data = await dataAPI.json(); // Convierte la respuesta en formato JSON
-    return data.payload; // Devuelve los mensajes de la bandeja de entrada
+    const data = await dataAPI.json(); // Parses the JSON response
+    return data.payload; // Returns the inbox payload
   };
 
-  // Método para buscar un contacto por número de teléfono
+  // Finds a contact by phone number
   searchByNumber = async (phone) => {
     const requestOptions = {
       method: "GET",
-      headers: this.buildHeader(), // Utiliza el encabezado construido
+      headers: this.buildHeader(), // Uses the shared headers
     };
 
     const dataAPI = await fetch(
       `${this.api}/api/v1/accounts/${this.config.accounts}/contacts/search?include_contact_inboxes=false&page=1&sort=-last_activity_at&q=${phone}`,
       requestOptions
     );
-    const data = await dataAPI.json(); // Convierte la respuesta en formato JSON
-    console.log(data.payload); // Imprime los datos del contacto en la consola
-    return data.payload; // Devuelve los datos del contacto
+    const data = await dataAPI.json(); // Parses the JSON response
+    console.log(data.payload); // Logs the contact payload
+    return data.payload; // Returns the contact payload
   };
 
-  // Método para crear una bandeja de entrada
+  // Creates an inbox
   createInbox = async (dataIn) => {
     const payload = {
       name: "BOTWS",
@@ -63,19 +63,19 @@ class ChatWood {
 
     const requestOptions = {
       method: "POST",
-      headers: this.buildHeader(), // Utiliza el encabezado construido
-      body: raw, // Establece el cuerpo de la solicitud
+      headers: this.buildHeader(), // Uses the shared headers
+      body: raw, // Sends the request body
     };
 
     const dataAPI = await fetch(
       `${this.api}/api/v1/accounts/${this.config.accounts}/inboxes`,
       requestOptions
     );
-    const data = await dataAPI.json(); // Convierte la respuesta en formato JSON
-    return data; // Devuelve la respuesta
+    const data = await dataAPI.json(); // Parses the JSON response
+    return data; // Returns the API response
   };
 
-  // Método para crear un contacto
+  // Creates a contact
   createContact = async (dataIn) => {
     const payload = {
       phone_number: dataIn.phone_number,
@@ -85,34 +85,34 @@ class ChatWood {
 
     const requestOptions = {
       method: "POST",
-      headers: this.buildHeader(), // Utiliza el encabezado construido
-      body: raw, // Establece el cuerpo de la solicitud
+      headers: this.buildHeader(), // Uses the shared headers
+      body: raw, // Sends the request body
     };
 
     const dataAPI = await fetch(
       `${this.api}/api/v1/accounts/${this.config.accounts}/contacts`,
       requestOptions
     );
-    const data = await dataAPI.json(); // Convierte la respuesta en formato JSON
-    return data; // Devuelve la respuesta
+    const data = await dataAPI.json(); // Parses the JSON response
+    return data; // Returns the API response
   };
 
-  // Método para obtener las conversaciones
+  // Gets conversations
   getConversations = async () => {
     const requestOptions = {
       method: "GET",
-      headers: this.buildHeader(), // Utiliza el encabezado construido
+      headers: this.buildHeader(), // Uses the shared headers
     };
 
     const dataAPI = await fetch(
       `${this.api}/api/v1/accounts/${this.config.accounts}/inboxes`,
       requestOptions
     );
-    const data = await dataAPI.json(); // Convierte la respuesta en formato JSON
-    return data.payload; // Devuelve las conversaciones
+    const data = await dataAPI.json(); // Parses the JSON response
+    return data.payload; // Returns the conversations payload
   };
   /**
-   *
+   * Creates a conversation.
    * @param dataIn
    * @returns
    */
@@ -136,7 +136,7 @@ class ChatWood {
     return data;
   };
   /**
-   *
+   * Filters conversations by payload.
    * @param dataIn
    * @returns
    */
@@ -167,9 +167,8 @@ class ChatWood {
   };
 
   /**
-   *
-   * @param msg
-   * @param mode
+   * Creates a message in a conversation.
+   * @param dataIn
    * @returns
    */
   createMessage = async (dataIn) => {

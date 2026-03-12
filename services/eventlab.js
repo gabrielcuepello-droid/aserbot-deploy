@@ -1,22 +1,22 @@
-// Importar el módulo fs
+// Import the fs module
 const fs = require('node:fs');
 
 /**
- * Convierte texto en voz utilizando la API de Eleven Labs
- * @param {string} text - El texto a convertir en voz
- * @param {string} voiceId - (Opcional) El ID de la voz a utilizar
- * @returns La ruta del archivo de audio generado
+ * Converts text to speech using the ElevenLabs API.
+ * @param {string} text - Text to convert into speech
+ * @param {string} voiceId - Optional voice id
+ * @returns The generated audio file path
  */
 const textToVoice = async (text, voiceId = 'vwfl76D5KBjKuSGfTbLB') => {
-  const EVENT_TOKEN = process.env.EVENT_TOKEN ?? ""; // Obtener el token de evento del entorno
-  const URL = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`; // URL de la API
+  const EVENT_TOKEN = process.env.EVENT_TOKEN ?? ""; // Reads the API token from the environment
+  const URL = `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`; // API endpoint
 
-  const header = new Headers(); // Crear un nuevo encabezado
-  header.append("accept", "audio/mpeg"); // Establecer el tipo de contenido aceptado
-  header.append("xi-api-key", EVENT_TOKEN); // Agregar el token de evento al encabezado
-  header.append("Content-Type", "application/json"); // Establecer el tipo de contenido del encabezado
+  const header = new Headers(); // Builds request headers
+  header.append("accept", "audio/mpeg"); // Accept audio responses
+  header.append("xi-api-key", EVENT_TOKEN); // Add the API token
+  header.append("Content-Type", "application/json"); // Send JSON payload
 
-  const raw = JSON.stringify({ // Crear el cuerpo de la solicitud en formato JSON
+  const raw = JSON.stringify({ // Request payload
     text,
     model_id: "eleven_multilingual_v1",
     voice_settings: {
@@ -25,20 +25,20 @@ const textToVoice = async (text, voiceId = 'vwfl76D5KBjKuSGfTbLB') => {
     },
   });
 
-  const requestOptions = { // Configurar las opciones de la solicitud
+  const requestOptions = { // Request options
     method: "POST",
     headers: header,
     body: raw,
     redirect: "follow",
   };
 
-  const response = await fetch(URL, requestOptions); // Realizar la solicitud a la API
-  const buffer = await response.arrayBuffer(); // Obtener el contenido de la respuesta como un búfer
-  const pathFile = `${process.cwd()}/tmp/${Date.now()}-auido.mp3`; // Ruta del archivo de audio
+  const response = await fetch(URL, requestOptions); // Sends the API request
+  const buffer = await response.arrayBuffer(); // Reads the response as a buffer
+  const pathFile = `${process.cwd()}/tmp/${Date.now()}-auido.mp3`; // Output audio path
 
-  fs.writeFileSync(pathFile, Buffer.from(buffer)); // Escribir el búfer en un archivo
+  fs.writeFileSync(pathFile, Buffer.from(buffer)); // Writes the audio file
 
-  return pathFile; // Devolver la ruta del archivo de audio
+  return pathFile; // Returns the audio file path
 };
 
-module.exports = { textToVoice }; // Exportar la función textToVoice
+module.exports = { textToVoice }; // Exports the textToVoice function
